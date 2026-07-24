@@ -89,17 +89,12 @@ export const ReviewPanel: React.FC = () => {
       </div>
 
       {/* Satisfaction Guarantee Badge & Pricing */}
-      <div className="mt-6 rounded-xl bg-indigo-100/50 p-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-indigo-600 text-white text-[10px] font-bold text-center leading-tight">
-            <img src={Satisfaction} alt="Satisfaction" className="h-24 w-24" />
-          </div>
-          <span className="text-[11px] font-medium text-slate-700">
-            30-day guarantee
-          </span>
+      <div className="mt-6 rounded-xl p-3 flex items-center justify-between">
+        <div className=" h-24 w-24 items-center justify-center rounded-full bg-indigo-600 text-white text-[10px] font-bold text-center leading-tight">
+          <img src={Satisfaction} alt="Satisfaction" className="h-24 w-24" />
         </div>
-        <div className="text-right">
-          <span className="text-[10px] text-slate-500 block">
+        <div className="text-right ">
+          <span className="text-xs text-center bg-indigo-600  block p-1.5 text-white rounded-lg">
             as low as $19.19/mo
           </span>
           <span className="text-xs text-slate-400 line-through mr-1.5">

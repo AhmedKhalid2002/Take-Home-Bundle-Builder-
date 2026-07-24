@@ -1,75 +1,70 @@
-# React + TypeScript + Vite
+# Frontend Take-Home: Multi-Step Security Bundle Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-ready, interactive multi-step security bundle builder prototype built with **React**, **TypeScript**, **Tailwind CSS**, and **Vite**.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🔗 Live Demo & Repository
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Live Site (Vercel):** https://take-home-bundle-builder-lpvz.vercel.app/
+- **GitHub Repository:** https://github.com/AhmedKhalid2002/Take-Home-Bundle-Builder-
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Features & Requirements Implemented
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Data-Driven Architecture:** All steps, categories, and products are dynamically rendered from a clean, central JSON source (`bundleData.json`).
+- **4-Step Vertical Accordion:**
+  - Step 1 ("Choose your cameras") is expanded by default.
+  - Interactive expand/collapse behavior.
+  - "N selected" counter on each step header reflecting distinct chosen products in that category.
+  - Quick navigation "Next: [Step Name]" button to advance to the next step.
+- **Product Cards:**
+  - Dynamic display of discount badges, thumbnails, descriptions, "Learn More" links, and pricing (compare-at vs active price).
+  - Highlighted active border state for selected products (quantity > 0).
+- **Variant Selector (Color Chips):**
+  - Independent quantity tracking per variant (e.g., White and Black of the same product maintain distinct counts).
+  - Seamless binding between the active variant color chip and the card's quantity stepper.
+  - Every active variant with `count > 0` flows separately into the Live Review Panel.
+- **Live Sync Review Panel ("Your security system"):**
+  - Synchronized quantity steppers on both product cards and summary line items.
+  - Dynamic grouping by category (`CAMERAS`, `SENSORS`, `ACCESSORIES`, `PLAN`).
+  - Real-time subtotal, savings callout, and compare-at total calculations.
+  - Free shipping row and satisfaction guarantee badge.
+- **State Persistence ("Save my system for later"):**
+  - Saves the entire bundle state (`quantities`, `activeVariants`, `openStep`) to `localStorage`.
+  - Restores configuration seamlessly across browser reloads or return visits.
+- **Responsive Design:**
+  - Pixel-perfect match to the Figma design on desktop.
+  - Fully responsive layout adapting down to mobile screen sizes.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠️ Tech Stack & Tools
 
-```
+- **Frontend Library:** React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Build Tool:** Vite
+- **State Management:** React Context API + Custom Hooks
+- **Persistence:** `localStorage` Utility
+- **Deployment:** Vercel
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📂 Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+```text
+src/
+├── assets/             # Static images and visual assets
+├── components/         # Modular UI components
+│   ├── accordion/      # AccordionStep & StepHeader
+│   ├── products/       # ProductCard, VariantSelector & QuantityStepper
+│   └── review/         # ReviewPanel, ReviewItem & OrderSummary
+├── context/            # BundleContext for global synced state
+├── data/               # bundleData.json (JSON data source)
+├── types/              # TypeScript interfaces and types
+├── utils/              # Persistence (localStorage) and formatting helpers
+├── App.tsx             # Root Layout & Provider wrapper
+└── main.tsx            # Application entry point
